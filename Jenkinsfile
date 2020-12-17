@@ -8,7 +8,7 @@ pipeline {
 
 
                	 stage('Build & Test'){
-               	 	sh "./gradlew clean build"
+               	 	sh "./gradle clean build"
                	 }
 
                	 stage('Sonar'){

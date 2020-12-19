@@ -1,51 +1,28 @@
 pipeline {
-	agent any 
+    agent any
+	
+	parameters { choice(name: 'devtool', choices: ['maven', 'gradle'], description: 'Elección de herramienta de construcción para aplicación covid') }
 
-	parameters { choice(name: 'buildtool', choices: ['gradle', 'maven'], description: 'Elección de herramienta de construcción para aplicación covid')}
-
-	stages {
-
-		/*stage('Pipelines') {
-			steps {
-				script {
-
-					params.herramienta // -> gradle o maven
-
-					def ejecucion = (params.herramienta == 'gradle') ? "${load 'gradle.groovy'}" : "${load 'maven.groovy'}"
+    stages {
+        stage('Pipeline') {
+            steps {
+                script {
+					def STAGE_NAME = ''
+					params.devtool
+				
+					def ejecucion = (params.devtool == 'gradle') ? load("gradle.groovy") : load("maven.groovy")
+					ejecucion.call()
 				}
-			}
-		}*/
-
-		stage('Hello') {
-			steps {
-				script {
-
-					/*env.TAREA = 'Hola'*/
-					env.TAREA = 'hola params.buildtool' // hola params.buildtool
-
-					def cadena = "Hola" + params.buildtool // Hola gradle
-					/*def cadena = "Hola ${params.buildtool}" */ // Hola gradle
-					/*def cadena = "${env.TAREA}"*/ //hola
-
-					println 'Herramienta de ejecución seleccionada: ' + params.buildtool
-					def pipe = load "${params.buildtool}.groovy"
-					pipe.call()
-				}
-			}
-		}
-	}
-
-
+           }
+        }
+    }
+	
 	post {
-
 		success {
-			println env.TAREA
-			println params.buildtool
+			slackSend color: 'good', message: "[Juan Salinas][pipeline-maven-gradle][${params.devtool}] Ejecución exitosa."
 		}
-
 		failure {
-			println env.TAREA
-			println params.buildtool
+			slackSend color: 'danger', message: "[Juan Salinas][pipeline-maven-gradle][${params.devtool}] Ejecución fallida en stage ${STAGE_NAME}."
 		}
 	}
 }

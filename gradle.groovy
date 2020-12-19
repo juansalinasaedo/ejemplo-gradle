@@ -2,7 +2,8 @@ def call(){
 
 	stage('Build & Test'){
 		STAGE_NAME = 'Build & test'
-		sh "./gradlew clean build"
+		//sh "./gradlew clean build"
+		sh "gradle clean build"
 	}	
 
 	stage('Sonar'){

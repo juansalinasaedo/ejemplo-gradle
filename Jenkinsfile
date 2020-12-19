@@ -10,8 +10,8 @@ pipeline {
 					def STAGE_NAME = ''
 					params.devtool
 				
-					def ejecucion = (params.devtool == 'gradle') ? load("gradle.groovy") : load("maven.groovy")
-					ejecucion.call()
+					def pipe = (params.devtool == 'gradle') ? load("gradle.groovy") : load("maven.groovy")
+					pipe.call()
 				}
            }
         }

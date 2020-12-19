@@ -25,7 +25,7 @@ pipeline {
 
 					def cadena = "Hola" + params.buildtool // Hola gradle
 					/*def cadena = "Hola ${params.buildtool}" */ // Hola gradle
-					def cadena = "${env.TAREA}" //hola
+					/*def cadena = "${env.TAREA}"*/ //hola
 
 					println 'Herramienta de ejecución seleccionada: ' + params.buildtool
 					def pipe = load "${params.buildtool}.groovy"

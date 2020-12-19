@@ -18,7 +18,7 @@ pipeline {
     }
 	
 
-	//Post
+	//Post para slack
 	post {
 		success {
 			slackSend color: 'good', message: "[Juan Salinas][pipeline-maven-gradle][${params.devtool}] Ejecución exitosa."

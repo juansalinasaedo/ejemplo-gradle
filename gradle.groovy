@@ -18,7 +18,7 @@ def call(){
 	stage('Run'){
 		STAGE_NAME = 'Run'
 		sh "nohup bash gradlew bootRun &"
-		sleep 20
+		sleep 30
 	}
 
 	stage('Test'){

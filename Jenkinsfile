@@ -20,7 +20,7 @@ pipeline {
 			steps {
 				script {
 
-					env.TAREA = 'Hola'
+					/*env.TAREA = 'Hola'*/
 					env.TAREA = 'hola params.buildtool' // hola params.buildtool
 
 					def cadena = "Hola" + params.buildtool // Hola gradle

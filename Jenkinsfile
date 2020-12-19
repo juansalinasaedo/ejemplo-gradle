@@ -24,7 +24,7 @@ pipeline {
 					env.TAREA = 'hola params.buildtool' // hola params.buildtool
 
 					def cadena = "Hola" + params.buildtool // Hola gradle
-					def cadena = "Hola ${params.buildtool}" // Hola gradle
+					/*def cadena = "Hola ${params.buildtool}" */ // Hola gradle
 					def cadena = "${env.TAREA}" //hola
 
 					println 'Herramienta de ejecución seleccionada: ' + params.buildtool

@@ -39,7 +39,8 @@ pipeline {
 	post {
 
 		success {
-
+			println env.TAREA
+			println params.buildtool
 		}
 
 		failure {

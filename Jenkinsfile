@@ -1,10 +1,10 @@
 pipeline {
 	agent any 
 
-	parameters { choice(name: 'herramienta', choices: ['gradle','maven'], description: 'Elección de herramienta de construcción para aplicación covid') }
+	parameters { choice(name: 'buildtool', choices: ['gradle', 'maven'], description: 'Elección de herramienta de construcción para aplicación covid')}
 
 	stages {
-		
+
 		/*stage('Pipelines') {
 			steps {
 				script {
@@ -18,18 +18,23 @@ pipeline {
 
 		stage('Hello') {
 			steps {
-				script{
+				script {
 
-					env.Tarea = ''
+					env.TAREA = 'Hola'
+					env.TAREA = 'hola params.buildtool' // hola params.buildtool
 
-					println 'Herramienta de ejecucion seleccionada: ' + params.buildtool
+					def cadena = "Hola" + params.buildtool // Hola gradle
+					def cadena = "Hola ${params.buildtool}" // Hola gradle
+					def cadena = "${env.TAREA}" //hola
+
+					println 'Herramienta de ejecución seleccionada: ' + params.buildtool
 					def pipe = load "${params.buildtool}.groovy"
 					pipe.call()
 				}
 			}
 		}
-
 	}
+
 
 	post {
 
@@ -38,7 +43,7 @@ pipeline {
 		}
 
 		failure {
-			println env.TAREA 
+			println env.TAREA
 			println params.buildtool
 		}
 	}

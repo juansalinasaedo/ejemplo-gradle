@@ -1,4 +1,9 @@
-pipeline {
+library 'pipeline'
+
+ejecucion.call()
+
+
+/*pipeline {
     agent any
 	
 	parameters { choice(name: 'devtool', choices: ['maven', 'gradle'], description: 'Elección de herramienta de construcción para aplicación covid') }
@@ -25,4 +30,4 @@ pipeline {
 			slackSend color: 'danger', message: "[Juan Salinas][pipeline-maven-gradle][${params.devtool}] Ejecución fallida en stage ${STAGE_NAME}."
 		}
 	}
-}
+}*/

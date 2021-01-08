@@ -1,4 +1,9 @@
-pipeline {
+library 'pipeline'
+
+ejecucion.call()
+
+
+/*pipeline {
     agent any
 
     stages {
@@ -37,4 +42,4 @@ pipeline {
             }
         }
     }
-}
+}*/
